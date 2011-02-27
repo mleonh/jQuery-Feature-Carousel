@@ -662,7 +662,7 @@
     // time in milliseconds to set interval to autorotate the carousel
     // set to zero to disable it, negative to go left
     autoPlay:             4000,
-    // accepts 'blips' to generate and display (optionally numbered) blips indicating what feature is centered
+    // accepts 'blips' to generate and display blips indicating what feature is centered
     // or set to 'caption' to prepend the feature number to the caption (requires a 'p' element in the caption)
     // set to anything else for neither
     counterStyle:         'blips',
