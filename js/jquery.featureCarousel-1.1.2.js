@@ -267,17 +267,18 @@
        */
       function setupBlips()
       {
-        // Only setup the blips if the counter style is 1 or 2
+        // Only setup the blips if the counter style is 'blips'
         if (options.counterStyle == 'blips') {
           // construct the blip list
           var $list = $("<ul></ul>");
           $list.addClass("blipsContainer");
           for (var i = 0; i < pluginData.totalFeatureCount; i++) {
-            // Counter style 1 has no numbers, while 2 does
-            var counter = i+1;
+            // build blip text as configured and replace tags
+            var blipText = options.counterBlipText;
+            blipText = blipText.replace("%number%", i+1).replace("%total%", pluginData.totalFeatureCount);
 
             // Build the DOM for the blip list
-            var $blip = $("<div>"+counter+"</div>");
+            var $blip = $("<div>").text(blipText);
             $blip.addClass("blip");
             $blip.css("cursor","pointer");
             $blip.attr("id","blip_"+(i+1));
@@ -661,10 +662,14 @@
     // time in milliseconds to set interval to autorotate the carousel
     // set to zero to disable it, negative to go left
     autoPlay:             4000,
-    // accepts 'blips' to generate and display numbered blips indicating what feature is centered
+    // accepts 'blips' to generate and display (optionally numbered) blips indicating what feature is centered
     // or set to 'caption' to prepend the feature number to the caption (requires a 'p' element in the caption)
     // set to anything else for neither
     counterStyle:         'blips',
+    // if 'counterStyle' option is set to 'blips', this option defines the contents of the generated blips.
+    // accepts a string where %number% will be replaced with the currently selected feature number,
+    // and %total% gets replaced with total feature count
+    counterBlipText:     '%number%',
     // true to preload all images in the carousel before displaying anything. If this is set to false,
     // you will probably need to set a fixed width/height to prevent strangeness
     preload:              true,
